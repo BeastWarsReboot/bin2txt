@@ -31,7 +31,12 @@
 
         //This function converts text to binary
         function toBinary(){
-
+            let inputTxt = document.getElementById("userInput").value;
+            let outputBin = document.getElementById("converterOutput");
+            outputBin.value = "";
+            for(var i = 0; i < inputTxt.length; i++){
+                outputBin.value += inputTxt[i].charCodeAt(0).toString(2) + " ";
+            }
         }
 
         //This function converts binary back to text
