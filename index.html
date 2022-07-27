@@ -31,21 +31,29 @@
         <button id="toBinary">To Binary</button>
         <button id="toText">To Text</button><br><br>
         <textarea id="convertOutput" rows="10" cols="55" placeholder="Output here..."></textarea>
+        <button id="copyTxt">Copy Text</button>
     </div>    
     <script>
 
+        let output = document.getElementById("convertOutput");
         document.getElementById("toBinary").onclick = toBinary;
         document.getElementById("toText").onclick = toText;
+        document.getElementById("copyTxt").onclick = copyText;
 
+        //Clear output box
         function clear(){
-            let output = document.getElementById("convertOutput");
             output.textContent = "";
+        }
+
+        //Copy output text 
+        function copyText(){
+            output.select();
+            navigator.clipboard.writeText(output.textContent);
         }
 
         //This function converts text to binary
         function toBinary(){
             let input = document.getElementById("userInput").value;
-            let output = document.getElementById("convertOutput");
             clear();
             for(var i = 0; i < input.length; i++){
                 output.textContent += input[i].charCodeAt(0).toString(2) + " ";
@@ -57,7 +65,6 @@
             let input = document.getElementById("userInput").value;
             input = input.split(" ");
             let binArray = [];
-            let output = document.getElementById("convertOutput");
             clear();
             for(var i = 0; i < input.length; i++){
                 binArray.push(String.fromCharCode(parseInt(input[i],2)));
