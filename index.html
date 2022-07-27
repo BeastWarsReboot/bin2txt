@@ -41,7 +41,17 @@
 
         //This function converts binary back to text
         function toText(){
-
+            let inputBin = document.getElementById("userInput").value;
+            inputBin = inputBin.split(" ");
+            let binArray = [];
+            let outputTxt = document.getElementById("converterOutput");
+            outputTxt.value = "";
+            for(var i = 0; i < inputBin.length; i++){
+                binArray.push(String.fromCharCode(parseInt(inputBin[i],2)));
+            } binArray.pop();
+            outputTxt.value += binArray.join("");
+            outputTxt = binArray.join("");
+            outputTxt.value += outputTxt;
         }
 
     </script>
