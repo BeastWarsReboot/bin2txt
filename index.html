@@ -15,6 +15,11 @@
         textarea{
             resize: none;
         }
+
+        button {
+            display: inline-block;
+        }
+
     </style>
 </head>
 
@@ -22,20 +27,34 @@
 
     <div>
         <label style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Binary/Text Converter:</label><br><br>
-        <input type="text" id="userInput" size="50" placeholder="Input binary or text to be converted here...">
-        <input type="button" id="toBinary" onClick="toBinary()" value="To Binary">
-        <input type="button" id="toText" onClick="toText()" value="To Text"><br><br>
+        <input type="text" id="userInput" size="50" placeholder="Input binary or text to be converted here..."><br>
+        <!--<input type="button" id="toBinary" onClick="toBinary()" value="To Binary">
+        <input type="button" id="toText" onClick="toText()" value="To Text"><br><br>-->
+        <button id="toBinary">To Binary</button>
+        <button id="toText">To Text</button><br><br>
         <textarea id="convertOutput" rows="10" cols="55" placeholder="Output here..."></textarea>
     </div>    
     <script>
 
+        document.getElementById("toBinary").onclick = toBinary;
+        document.getElementById("toText").onclick = toText;
+
+        function tester(){
+            alert('hey');
+        }
+
+        function clear(){
+            let output = document.getElementById("convertOutput");
+            output.textContent = "";
+        }
+
         //This function converts text to binary
         function toBinary(){
-            let inputTxt = document.getElementById("userInput").value;
-            let outputBin = document.getElementById("converterOutput");
-            outputBin.value = "";
-            for(var i = 0; i < inputTxt.length; i++){
-                outputBin.value += inputTxt[i].charCodeAt(0).toString(2) + " ";
+            let input = document.getElementById("userInput").value;
+            let output = document.getElementById("convertOutput");
+            clear();
+            for(var i = 0; i < input.length; i++){
+                output.textContent += input[i].charCodeAt(0).toString(2) + " ";
             }
         }
 
@@ -44,8 +63,8 @@
             let inputBin = document.getElementById("userInput").value;
             inputBin = inputBin.split(" ");
             let binArray = [];
-            let outputTxt = document.getElementById("converterOutput");
-            outputTxt.value = "";
+            let outputTxt = document.getElementById("convertOutput");
+            //outputTxt.value = "";
             for(var i = 0; i < inputBin.length; i++){
                 binArray.push(String.fromCharCode(parseInt(inputBin[i],2)));
             } binArray.pop();
